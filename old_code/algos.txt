@@ -1,0 +1,5 @@
+1. logistic regression
+2. random forest
+3. gradient boosting algorithms - xgboost library
+4. catboost
+5. naive bayes algorithm

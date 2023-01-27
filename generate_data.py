@@ -63,11 +63,11 @@ for vertex_id in range(total_vertices):
 print("Computing single node features...")
 
 # Single node features
-for func in tqdm(single_funcs):
-    print(func)
+for func in single_funcs:
+    print(func.__name__)
     node_1 = []
     node_2 = []
-    for i in range(row_count):
+    for i in tqdm(range(row_count)):
         index_1 = int(df['node_1'][i])
         index_2 = int(df['node_2'][i])
         subgraph_1 = subgraphs_ig[index_1]
@@ -83,9 +83,10 @@ for func in tqdm(single_funcs):
 print("Computing node pair features...")
 
 # Pair node features
-for func in tqdm(pair_funcs):
+for func in pair_funcs:
+    print(func.__name__)
     result = []
-    for i in range(row_count):
+    for i in tqdm(range(row_count)):
         index_1 = int(df['node_1'][i])
         index_2 = int(df['node_2'][i])
         result.append(func(graph_ig, index_1, index_2))
@@ -114,7 +115,6 @@ comms_data['label'] = comms_data['label'].apply(lambda x: 0 if (x < 0.5) else 1)
 df['label'] = comms_data['label']
 
 # Save dataset
-df.to_csv(output_path + 'dataset.csv')
+df.to_csv(output_path + '.csv')
 
 print("Dataset created successfully.")
-
